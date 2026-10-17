@@ -1,0 +1,46 @@
+print("===== AI Resume Analyzer =====")
+resume = input("Enter your resume text: ").lower()
+job = input("Enter the job description: ").lower()
+skills = [
+    "python", "java", "sql", "machine learning",
+    "data analysis", "communication", "html", "css"
+]
+resume_skills = [skill for skill in skills if skill in resume]
+job_skills = [skill for skill in skills if skill in job]
+matched_skills = [
+    skill for skill in resume_skills if skill in job_skills
+]
+print("\n===== Resume Analysis Report =====")
+print("Skills Found in Resume:", resume_skills)
+print("Required Job Skills:", job_skills)
+print("Matching Skills:", matched_skills)
+if job_skills:
+    score = (len(matched_skills) / len(job_skills)) * 100
+    print("Resume Match Score:", round(score, 2), "%")
+else:
+    print("No recognized skills found in job description.")
+missing_skills = [
+    skill for skill in job_skills if skill not in resume_skills
+]
+print("Missing Skills:", missing_skills)
+if missing_skills:
+    print("Suggestion: Learn the missing skills to improve your match.")
+else:
+    print("Great! Your resume matches all recognized job skills.")
+
+
+
+
+OUTPUT:
+
+===== AI Resume Analyzer =====
+Enter your resume text: I know Python, SQL, HTML and CSS.
+Enter the job description: Looking for Python, SQL, Java and machine learning skills.
+
+===== Resume Analysis Report =====
+Skills Found in Resume: ['python', 'sql', 'html', 'css']
+Required Job Skills: ['python', 'java', 'sql', 'machine learning']
+Matching Skills: ['python', 'sql']
+Resume Match Score: 50.0 %
+Missing Skills: ['java', 'machine learning']
+Suggestion: Learn the missing skills to improve your match.
